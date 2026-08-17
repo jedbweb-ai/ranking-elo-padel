@@ -496,98 +496,35 @@ footer{text-align:center;font-size:11.5px;color:var(--muted-2);padding:34px 12px
    ============================================================== */
 
 const DATOS_CSV = `fecha,jugador_a1,jugador_a2,jugador_b1,jugador_b2,set1_a,set1_b,set2_a,set2_b,set3_a,set3_b
-2026-03-03,Nacho,Juli,Fede,Mati,6,3,6,0,,
-2026-03-03,Juli,Fede,Mati,Nacho,6,7,6,3,6,3
-2026-03-05,Santi,Nacho,Fede,Juli,6,7,5,7,,
-2026-03-05,Juli,Santi,Fede,Nacho,5,7,1,6,,
-2026-03-10,Lucas,Fede,Diego,Juli,0,6,3,6,,
-2026-03-10,Fede,Juli,Lucas,Santi,6,3,7,5,,
-2026-03-10,Juli,Lucas,Nacho,Fede,0,6,0,6,,
-2026-03-12,Mati,Nacho,Santi,Lucas,6,1,6,0,,
-2026-03-12,Mati,Lucas,Nacho,Santi,3,6,0,6,,
-2026-03-12,Juli,Fede,Nacho,Mati,6,0,6,4,,
-2026-03-17,Juli,Nacho,Fede,Santi,6,0,6,0,,
-2026-03-17,Nacho,Santi,Fede,Juli,6,3,3,6,7,5
-2026-03-24,Nacho,Santi,Diego,Juli,6,4,6,1,,
-2026-03-24,Santi,Diego,Juli,Nacho,1,6,1,6,,
-2026-03-31,Mati,Juli,Diego,Nacho,4,6,6,1,2,6
-2026-03-31,Nacho,Diego,Mati,Juli,6,7,6,7,,
-2026-04-02,Lucas,Nacho,Juli,Fede,0,6,5,7,,
-2026-04-02,Nacho,Lucas,Fede,Juli,3,6,4,6,,
-2026-04-07,Diego,Nacho,Fede,Juli,3,6,5,7,,
-2026-04-07,Nacho,Santi,Mati,Fede,6,3,6,3,,
-2026-04-07,Diego,Santi,Fede,Mati,0,6,5,7,,
-2026-04-09,Fede,Diego,Nacho,Mati,1,6,1,6,,
-2026-04-09,Juli,Diego,Nacho,Mati,3,6,3,6,,
-2026-04-09,Santi,Fede,Nacho,Mati,7,5,3,6,6,7
-2026-04-16,Diego,Mati,Juli,Nacho,1,6,2,6,,
-2026-04-16,Mati,Juli,Santi,Nacho,2,6,3,6,,
-2026-04-16,Diego,Mati,Juli,Nacho,2,6,1,6,,
-2026-04-23,Juli,Nacho,Fede,Diego,6,2,6,2,,
-2026-04-23,Nacho,Fede,Diego,Juli,6,0,6,2,,
-2026-04-30,Fede,Santi,Lucas,Juli,6,0,7,5,,
-2026-04-30,Lucas,Santi,Juli,Fede,0,6,2,6,,
-2026-05-05,Juli,Lucas,Fede,Nacho,2,6,0,6,,
-2026-05-05,Santi,Nacho,Fede,Diego,7,5,6,3,,
-2026-05-05,Diego,Lucas,Juli,Fede,3,6,0,6,,
-2026-05-07,Fede,Nacho,Juli,Mati,6,2,6,1,,
-2026-05-07,Mati,Fede,Nacho,Juli,1,6,1,6,,
-2026-05-12,Nacho,Juli,Lucas,Diego,6,1,6,3,,
-2026-05-12,Nacho,Juli,Diego,Fede,6,1,6,1,,
-2026-05-12,Nacho,Lucas,Fede,Diego,6,4,6,7,4,6
-2026-05-19,Nacho,Diego,Juli,Fede,6,7,5,7,,
-2026-05-19,Fede,Juli,Diego,Nacho,1,6,6,1,6,4
-2026-05-21,Mati,Diego,Fede,Juli,0,6,2,6,,
-2026-05-21,Juli,Fede,Mati,Diego,6,7,6,3,6,7
-2026-05-26,Santi,Mati,Fede,Nacho,1,6,0,6,,
-2026-05-26,Juli,Lucas,Nacho,Fede,1,6,1,6,,
-2026-05-26,Nacho,Fede,Juli,Santi,6,0,4,6,3,6
-2026-05-28,Juli,Diego,Fede,Mati,4,6,6,3,2,6
-2026-05-28,Mati,Juli,Diego,Fede,4,6,6,7,,
-2026-06-04,Juli,Santi,Nacho,Mati,3,6,7,6,4,6
-2026-06-04,Juli,Mati,Nacho,Lucas,6,0,6,4,,
-2026-06-04,Mati,Santi,Nacho,Lucas,2,6,1,6,,
-2026-06-09,Juli,Nacho,Santi,Mati,6,3,6,0,,
-2026-06-09,Juli,Mati,Nacho,Santi,1,6,6,3,2,6
-2026-06-11,Diego,Santi,Juli,Nacho,3,6,2,6,,
-2026-06-11,Diego,Nacho,Santi,Juli,6,2,4,6,6,7
-2026-06-16,Mati,Juli,Nacho,Fede,2,6,5,7,,
-2026-06-16,Nacho,Juli,Fede,Mati,6,1,6,1,,
-2026-06-18,Fede,Juli,Lucas,Nacho,6,3,1,6,6,3
-2026-06-18,Diego,Lucas,Juli,Mati,2,6,0,6,,
-2026-06-18,Diego,Lucas,Nacho,Mati,3,6,0,6,,
-2026-06-25,Mati,Nacho,Juli,Fede,4,6,6,2,7,5
-2026-06-25,Diego,Fede,Lucas,Juli,6,3,4,6,7,5
-2026-06-25,Lucas,Diego,Mati,Nacho,2,6,1,6,,
-2026-07-02,Nacho,Juli,Fede,Santi,6,1,6,2,,
-2026-07-02,Fede,Santi,Nacho,Juli,3,6,2,6,,
-2026-07-07,Nacho,Juli,Fede,Mati,7,5,3,6,6,3
-2026-07-07,Fede,Juli,Nacho,Mati,6,7,2,6,,
-2026-07-09,Juli,Fede,Santi,Lucas,6,0,6,0,,
-2026-07-09,Santi,Fede,Juli,Lucas,6,4,6,2,,
-2026-07-14,Diego,Lucas,Santi,Mati,1,6,1,6,,
-2026-07-14,Fede,Diego,Juli,Lucas,6,2,7,6,,
-2026-07-14,Lucas,Juli,Diego,Mati,6,3,4,6,2,6
-2026-07-16,Mati,Juli,Lucas,Santi,7,5,6,1,,
-2026-07-16,Santi,Lucas,Fede,Mati,6,0,0,6,6,1
-2026-07-16,Juli,Mati,Fede,Santi,3,6,1,6,,
-2026-07-21,Lucas,Mati,Juli,Nacho,4,6,0,6,,
-2026-07-21,Juli,Lucas,Mati,Nacho,0,6,4,6,,
-2026-07-30,Diego,Santi,Mati,Nacho,3,6,2,6,,
-2026-07-30,Juli,Santi,Diego,Nacho,4,6,4,6,,
-2026-07-30,Diego,Santi,Nacho,Juli,2,6,1,6,,
-2026-08-04,Juli,Diego,Fede,Mati,1,6,7,5,1,6
-2026-08-04,Juli,Fede,Santi,Diego,6,3,6,1,,
-2026-08-04,Nacho,Diego,Juli,Santi,3,6,6,4,6,0
-2026-08-06,Fede,Juli,Mati,Diego,6,4,6,0,,
-2026-08-06,Mati,Diego,Fede,Juli,1,6,1,6,,
-2026-08-11,Nacho,Santi,Juli,Diego,7,5,6,2,,
-2026-08-11,Juli,Nacho,Diego,Santi,6,0,6,1,,`;
+2026-08-05,Genti,Bruno.C,Bruno,Juan,4,7,,,,
+2026-08-05,Blas,Mantek,Juano,Joni,7,2,,,,
+2026-08-05,Genti,Bruno.C,Mantek,Blas,3,7,,,,
+2026-08-05,Bruno,Juan,Juano,Joni,7,5,,,,
+2026-08-05,Bruno,Juan,Mantek,Blas,7,6,,,,
+2026-08-05,Genti,Bruno.C,Juano,Joni,7,5,,,,
+2026-08-17,Mantek,Blas,Juano,Tomi P,5,7,,,,
+2026-08-17,Juan,Bruno,Martin,Joni,3,7,,,,
+2026-08-17,Mantek,Blas,Martin,Joni,7,4,,,,
+2026-08-17,Juano,Tomi P,Juan,Bruno,7,5,,,,
+2026-08-17,Juano,Tomi P,Martin,Joni,4,7,,,,
+2026-08-17,Mantek,Blas,Juan,Bruno,7,6,,,,
+2026-08-17,Mantek,Joni,Blas,Juano,3,7,,,,
+2026-08-17,Martin,Bruno,Juan,Genti,7,3,,,,
+2026-08-17,Blas,Juano,Juan,Genti,7,4,,,,
+2026-08-17,Mantek,Joni,Martin,Bruno,7,5,,,,
+2026-08-17,Mantek,Joni,Juan,Genti,2,7,,,,
+2026-08-17,Blas,Juano,Martin,Bruno,7,6,,,,
+2026-08-17,Martin,Juan,Juano,Genti,7,2,,,,
+2026-08-17,Puji,Bruno,Matías,Tomi M,5,7,,,,
+2026-08-17,Martin,Juan,Puji,Bruno,5,7,,,,
+2026-08-17,Juano,Genti,Matías,Tomi M,3,7,,,,
+2026-08-17,Martin,Juan,Matías,Tomi M,7,4,,,,
+2026-08-17,Juano,Genti,Puji,Bruno,2,7,,,,`;
 
 const CONFIG = {
   // titular del hero: una línea por elemento (la última va en gris)
   titulo:        ["El ranking de los miércoles. Partido a partido.", "Sin discusión."],
-  subtitulo:     "datos de ejemplo",
+  subtitulo:     "temporada 2026",
   eloInicial:    1500,
   K:             32,
   factorMargen:  0.08,
@@ -741,12 +678,38 @@ document.getElementById("foot").textContent =
    ============================================================== */
 function drawLadder(){
   const svg = document.getElementById("ladder");
-  const W = Math.max(620, svg.clientWidth || 620), H = 172;
-  const padX = 30, y0 = 86;
+  const W = Math.max(620, svg.clientWidth || 620);
+  const padX = 30;
   const vals = JUGADORES.map(p => elo[p]);
   const lo = Math.floor((Math.min(...vals) - 40) / 25) * 25;
   const hi = Math.ceil ((Math.max(...vals) + 40) / 25) * 25;
   const x  = v => padX + (v - lo) / (hi - lo) * (W - padX * 2);
+
+  // -- anti-colisión: cuando varios jugadores quedan muy cerca en ELO (x parecido),
+  //    se van apilando en niveles adicionales en vez de superponer las etiquetas --
+  const estWidth = p => 26 + p.length * 6.6;      // ancho aproximado de la etiqueta
+  const MIN_GAP  = 12;                            // separación mínima entre etiquetas vecinas
+  const TIER_STEP = 32;                           // separación vertical entre niveles
+
+  const order = JUGADORES
+    .map((p, i) => ({ p, i, cx: x(elo[p]), w: estWidth(p) }))
+    .sort((a, b) => a.cx - b.cx);
+
+  const lanes = { up: [], down: [] };             // lanes[lado][nivel] = borde derecho ocupado
+  order.forEach(o => {
+    const side = o.i % 2 === 0 ? "up" : "down";   // igual criterio que antes: alterna por puesto
+    const arr = lanes[side];
+    let tier = 0;
+    while (arr[tier] !== undefined && (o.cx - o.w / 2) < arr[tier] + MIN_GAP) tier++;
+    arr[tier] = o.cx + o.w / 2;
+    o.side = side;
+    o.tier = tier;
+  });
+
+  const tiersUp   = Math.max(0, ...order.filter(o => o.side === "up").map(o => o.tier)) + 1;
+  const tiersDown = Math.max(0, ...order.filter(o => o.side === "down").map(o => o.tier)) + 1;
+  const y0 = 40 + tiersUp * TIER_STEP;                 // deja lugar arriba para todos los niveles
+  const H  = y0 + 42 + tiersDown * TIER_STEP;          // deja lugar abajo para todos los niveles
 
   let s = `<line class="axis" x1="${padX}" y1="${y0}" x2="${W-padX}" y2="${y0}"/>`;
   for (let v = lo; v <= hi; v += 50){
@@ -754,19 +717,25 @@ function drawLadder(){
           <text class="ticktext" x="${x(v)}" y="${y0+18}" text-anchor="middle">${v}</text>`;
   }
   // línea del promedio del grupo
-  s += `<line class="tickline" x1="${x(CONFIG.eloInicial)}" y1="20" x2="${x(CONFIG.eloInicial)}" y2="${y0}"
+  s += `<line class="tickline" x1="${x(CONFIG.eloInicial)}" y1="16" x2="${x(CONFIG.eloInicial)}" y2="${y0}"
           stroke-dasharray="3 3"/>
-        <text class="ticktext" x="${x(CONFIG.eloInicial)}" y="16" text-anchor="middle">promedio</text>`;
+        <text class="ticktext" x="${x(CONFIG.eloInicial)}" y="12" text-anchor="middle">promedio</text>`;
 
-  JUGADORES.forEach((p, i) => {
-    const up = i % 2 === 0, cx = x(elo[p]);
-    const ty = up ? y0 - 26 : y0 + 42, ly = up ? y0 - 40 : y0 + 56;
+  const lider = JUGADORES[0];
+  order.forEach(o => {
+    const { p, cx, side, tier } = o;
+    const up = side === "up";
+    const off = 26 + tier * TIER_STEP;
+    const ty = up ? y0 - off : y0 + off;
+    const ly = up ? ty - 14 : ty + 14;
+    const stemEnd = up ? ty + 8 : ty - 8;
     // zona clickeable: cubre el punto y la etiqueta, no solo los trazos
-    const hy = up ? y0 - 48 : y0 + 10, hh = 58;
+    const hy = up ? ly - 10 : y0 + 4;
+    const hh = up ? (y0 - hy) : (ly + 10 - hy);
     s += `<g class="pl" data-p="${p}">
             <rect x="${cx-42}" y="${hy}" width="84" height="${hh}" fill="transparent"/>
-            <line class="stem" x1="${cx}" y1="${y0}" x2="${cx}" y2="${up ? y0-20 : y0+22}"/>
-            <circle class="dot${i===0?" lead":""}" cx="${cx}" cy="${y0}" r="6"/>
+            <line class="stem" x1="${cx}" y1="${y0}" x2="${cx}" y2="${stemEnd}"/>
+            <circle class="dot${p===lider?" lead":""}" cx="${cx}" cy="${y0}" r="6"/>
             <text class="nm" x="${cx}" y="${ty}" text-anchor="middle">${p}</text>
             <text class="vl" x="${cx}" y="${ly}" text-anchor="middle">${Math.round(elo[p])}</text>
           </g>`;
