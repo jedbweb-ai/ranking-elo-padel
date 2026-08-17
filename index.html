@@ -117,45 +117,56 @@ nav button:focus-visible{outline:1px solid var(--blue);outline-offset:1px}
   overflow-x:auto;scrollbar-width:thin;
   margin:0 calc(var(--pad)*-1);padding:0 var(--pad)
 }
+.ladder-scroll{
+  -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 30px),transparent 100%);
+  mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 30px),transparent 100%)
+}
 @media (max-width:760px){
-  .ladder-scroll,.mx-scroll,.chart-scroll{
+  .mx-scroll,.chart-scroll{
     -webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 30px),transparent 100%);
     mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 30px),transparent 100%)}
 }
-.ladder{min-width:620px;width:100%;height:184px;display:block}
+.ladder{display:block}
 .ladder .axis{stroke:var(--line);stroke-width:1}
 .ladder .tickline{stroke:#26262C;stroke-width:1}
-.ladder .ticktext{font-family:var(--mono);font-size:9px;fill:var(--muted-2)}
+.ladder .ticktext{font-family:var(--mono);font-size:11px;fill:var(--muted-2)}
 .ladder .stem{stroke:var(--blue);stroke-width:1;opacity:.45}
+.ladder .tick{fill:var(--muted-2);opacity:.55}
 .ladder .dot{fill:var(--blue);cursor:pointer;transition:r .16s}
 .ladder .dot.lead{fill:#fff;stroke:var(--blue);stroke-width:4}
-.ladder g.pl:hover .dot{r:8}
+.ladder g.pl:hover .dot{r:9}
 .ladder g.pl:hover .nm{fill:var(--blue-lit)}
-.ladder .nm{font-size:12.5px;font-weight:600;fill:var(--ink);transition:fill .15s}
-.ladder .vl{font-family:var(--mono);font-size:10px;fill:var(--muted-2)}
+.ladder .nm{font-size:15px;font-weight:600;fill:var(--ink);transition:fill .15s}
+.ladder .vl{font-family:var(--mono);font-size:11.5px;fill:var(--muted-2)}
 .ladder g.pl{cursor:pointer}
 
 /* ============================================================
    TABLA
    ============================================================ */
-.tbl{width:100%;border-collapse:collapse;font-size:14px}
-.tbl th{
-  font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted-2);
-  font-weight:600;text-align:right;padding:0 10px 12px;border-bottom:1px solid var(--line);white-space:nowrap
+.tbl-scroll{
+  max-height:640px;overflow-y:auto;scrollbar-width:thin;
+  border:1px solid var(--line-soft);border-radius:var(--r-sm)
+}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl thead th{
+  position:sticky;top:0;background:var(--panel);z-index:1;
+  font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted-2);
+  font-weight:600;text-align:right;padding:12px 12px;border-bottom:1px solid var(--line);white-space:nowrap
 }
 .tbl th:nth-child(1),.tbl th:nth-child(2){text-align:left}
-.tbl td{padding:13px 10px;border-bottom:1px solid var(--line-soft);text-align:right;vertical-align:middle}
+.tbl td{padding:17px 12px;border-bottom:1px solid var(--line-soft);text-align:right;vertical-align:middle}
 .tbl td:nth-child(1),.tbl td:nth-child(2){text-align:left}
 .tbl tr.row{cursor:pointer;transition:background .13s}
 .tbl tr.row:hover{background:var(--raise)}
 .tbl tr.row:hover .pname{color:var(--blue-lit)}
-.pos{font-family:var(--mono);font-size:12px;color:var(--muted-2);width:26px}
+.tbl tr.row:last-child td{border-bottom:0}
+.pos{font-family:var(--mono);font-size:13px;color:var(--muted-2);width:26px}
 .pos.p1{color:var(--blue);font-weight:700}
-.pname{font-weight:600;font-size:15px;color:var(--ink);letter-spacing:-.015em;transition:color .13s}
-.pbar{height:3px;background:#1E1E23;border-radius:2px;margin-top:7px;overflow:hidden;max-width:190px}
+.pname{font-weight:600;font-size:16px;color:var(--ink);letter-spacing:-.015em;transition:color .13s}
+.pbar{height:3px;background:#1E1E23;border-radius:2px;margin-top:8px;overflow:hidden;max-width:190px}
 .pbar i{display:block;height:100%;background:var(--blue);border-radius:2px}
 tr.p1 .pbar i{background:#fff}
-.elo{font-family:var(--mono);font-size:17px;font-weight:500;color:var(--ink);letter-spacing:-.02em}
+.elo{font-family:var(--mono);font-size:18px;font-weight:500;color:var(--ink);letter-spacing:-.02em}
 .delta{font-family:var(--mono);font-size:12px;font-weight:500}
 .up{color:var(--blue-lit)} .down{color:var(--rose)} .flat{color:var(--muted-2)}
 .dim{color:var(--muted);font-family:var(--mono);font-size:13px}
@@ -312,9 +323,10 @@ footer{text-align:center;font-size:11.5px;color:var(--muted-2);padding:34px 12px
   font-family:var(--mono);letter-spacing:-.01em}
 
 @media (max-width:600px){
+  .tbl-scroll{max-height:70vh}
   .tbl .hide-s{display:none}
-  .tbl td{padding:12px 6px}
-  .tbl th{padding:0 6px 12px}
+  .tbl td{padding:14px 6px}
+  .tbl thead th{padding:10px 6px}
   .hrow{grid-template-columns:60px 1fr auto;gap:9px}
   .hrow .sc2{display:none}
   .app-bar{flex-direction:column;align-items:stretch;gap:8px;padding:10px}
@@ -360,7 +372,7 @@ footer{text-align:center;font-size:11.5px;color:var(--muted-2);padding:34px 12px
     <div class="eyebrow">Tabla</div>
     <h2>Ranking actual</h2>
     <p class="sub">Tocá cualquier jugador para ver su historial completo.</p>
-    <table class="tbl" id="rank-tbl"></table>
+    <div class="tbl-scroll"><table class="tbl" id="rank-tbl"></table></div>
   </div>
 </section>
 
@@ -678,22 +690,52 @@ document.getElementById("foot").textContent =
    ============================================================== */
 function drawLadder(){
   const svg = document.getElementById("ladder");
-  const W = Math.max(620, svg.clientWidth || 620);
-  const padX = 30;
+  const padX = 40;
   const vals = JUGADORES.map(p => elo[p]);
   const lo = Math.floor((Math.min(...vals) - 40) / 25) * 25;
   const hi = Math.ceil ((Math.max(...vals) + 40) / 25) * 25;
-  const x  = v => padX + (v - lo) / (hi - lo) * (W - padX * 2);
+  // -- escala "de cerca": cada punto de ELO ocupa espacio fijo en px, así el
+  //    gráfico crece de verdad (en vez de achicarse para entrar en el ancho
+  //    disponible) y el contenedor scrollea horizontalmente para verlo entero --
+  const PX_PER_PT = 13;
+  const W = padX * 2 + (hi - lo) * PX_PER_PT;
+  const x = v => padX + (v - lo) / (hi - lo) * (W - padX * 2);
 
   // -- anti-colisión: cuando varios jugadores quedan muy cerca en ELO (x parecido),
   //    se van apilando en niveles adicionales en vez de superponer las etiquetas --
-  const estWidth = p => 26 + p.length * 6.6;      // ancho aproximado de la etiqueta
-  const MIN_GAP  = 12;                            // separación mínima entre etiquetas vecinas
-  const TIER_STEP = 32;                           // separación vertical entre niveles
+  const estWidth = p => 30 + p.length * 8;        // ancho aproximado de la etiqueta
+  const MIN_GAP  = 14;                            // separación mínima entre etiquetas vecinas
+  const TIER_STEP = 36;                           // separación vertical entre niveles
+  const DOT_R    = 7;
+  const DOT_GAP  = DOT_R * 2 + 6;                 // separación mínima entre puntos vecinos
 
   const order = JUGADORES
-    .map((p, i) => ({ p, i, cx: x(elo[p]), w: estWidth(p) }))
-    .sort((a, b) => a.cx - b.cx);
+    .map((p, i) => ({ p, i, tx: x(elo[p]), w: estWidth(p) }))
+    .sort((a, b) => a.tx - b.tx);
+
+  // -- anti-colisión de los PUNTOS: cuando dos o más jugadores tienen el mismo ELO
+  //    (o muy parecido) sus puntos quedan literalmente pisados uno sobre el otro.
+  //    Se agrupan en clusters y se reparten de forma pareja alrededor del promedio
+  //    real del grupo, así ningún punto tapa a otro. --
+  let clusters = order.map(o => ({ items: [o], sum: o.tx, n: 1 }));
+  let merged = true;
+  while (merged) {
+    merged = false;
+    for (let i = 0; i < clusters.length - 1; i++) {
+      const a = clusters[i], b = clusters[i + 1];
+      const meanA = a.sum / a.n, meanB = b.sum / b.n;
+      if (meanB - meanA < (a.n + b.n) * DOT_GAP / 2) {
+        clusters.splice(i, 2, { items: a.items.concat(b.items), sum: a.sum + b.sum, n: a.n + b.n });
+        merged = true;
+        break;
+      }
+    }
+  }
+  clusters.forEach(c => {
+    const mean  = c.sum / c.n;
+    const start = mean - (c.n - 1) * DOT_GAP / 2;
+    c.items.forEach((o, idx) => { o.cx = start + idx * DOT_GAP; });
+  });
 
   const lanes = { up: [], down: [] };             // lanes[lado][nivel] = borde derecho ocupado
   order.forEach(o => {
@@ -723,7 +765,7 @@ function drawLadder(){
 
   const lider = JUGADORES[0];
   order.forEach(o => {
-    const { p, cx, side, tier } = o;
+    const { p, cx, tx, side, tier } = o;
     const up = side === "up";
     const off = 26 + tier * TIER_STEP;
     const ty = up ? y0 - off : y0 + off;
@@ -732,15 +774,19 @@ function drawLadder(){
     // zona clickeable: cubre el punto y la etiqueta, no solo los trazos
     const hy = up ? ly - 10 : y0 + 4;
     const hh = up ? (y0 - hy) : (ly + 10 - hy);
+    const nudged = Math.abs(cx - tx) > 0.6;
     s += `<g class="pl" data-p="${p}">
-            <rect x="${cx-42}" y="${hy}" width="84" height="${hh}" fill="transparent"/>
+            <rect x="${Math.min(cx,tx)-42}" y="${hy}" width="${Math.abs(cx-tx)+84}" height="${hh}" fill="transparent"/>
+            ${nudged ? `<circle class="tick" cx="${tx}" cy="${y0}" r="2"/>` : ""}
             <line class="stem" x1="${cx}" y1="${y0}" x2="${cx}" y2="${stemEnd}"/>
-            <circle class="dot${p===lider?" lead":""}" cx="${cx}" cy="${y0}" r="6"/>
+            <circle class="dot${p===lider?" lead":""}" cx="${cx}" cy="${y0}" r="${DOT_R}"/>
             <text class="nm" x="${cx}" y="${ty}" text-anchor="middle">${p}</text>
             <text class="vl" x="${cx}" y="${ly}" text-anchor="middle">${Math.round(elo[p])}</text>
           </g>`;
   });
   svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.style.width  = W + "px";
+  svg.style.height = H + "px";
   svg.innerHTML = s;
   svg.querySelectorAll("g.pl").forEach(g =>
     g.onclick = () => showPlayer(g.dataset.p));
