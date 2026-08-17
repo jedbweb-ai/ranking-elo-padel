@@ -154,6 +154,12 @@ nav button:focus-visible{outline:1px solid var(--blue);outline-offset:1px}
   font-weight:600;text-align:right;padding:12px 12px;border-bottom:1px solid var(--line);white-space:nowrap
 }
 .tbl th:nth-child(1),.tbl th:nth-child(2){text-align:left}
+.tbl th.sortable{cursor:pointer;user-select:none;transition:color .13s}
+.tbl th.sortable:hover{color:var(--ink-2)}
+.tbl th.sortable.active{color:var(--blue-lit)}
+.tbl th .sort-ic{display:inline-block;margin-left:3px;font-size:9px;opacity:.4;transition:opacity .13s}
+.tbl th.sortable:hover .sort-ic{opacity:.75}
+.tbl th.sortable.active .sort-ic{opacity:1;color:var(--blue-lit)}
 .tbl td{padding:17px 12px;border-bottom:1px solid var(--line-soft);text-align:right;vertical-align:middle}
 .tbl td:nth-child(1),.tbl td:nth-child(2){text-align:left}
 .tbl tr.row{cursor:pointer;transition:background .13s}
@@ -795,20 +801,57 @@ function drawLadder(){
 /* ==============================================================
    7. TABLA DE RANKING
    ============================================================== */
+// -- orden interactivo: cada columna numérica es clickeable. Ciclo por click:
+//    sin orden (ELO desc, por defecto) → mayor a menor (▼) → menor a mayor (▲) → sin orden --
+const SORT_COLS = {
+  elo:   { label: "ELO",   cls: "",        val: p => elo[p] },
+  pico:  { label: "Pico",  cls: "hide-s",  val: p => stats[p].pico },
+  pj:    { label: "PJ",    cls: "",        val: p => stats[p].pj },
+  pg:    { label: "PG",    cls: "",        val: p => stats[p].pg },
+  pct:   { label: "%",     cls: "",        val: p => stats[p].pj ? stats[p].pg / stats[p].pj : 0 },
+  racha: { label: "Racha", cls: "hide-s",  val: p => stats[p].racha.gano ? stats[p].racha.n : -stats[p].racha.n }
+};
+let tableSort = { key: null, dir: null };   // dir: "desc" | "asc" | null
+
+function sortedJugadores(){
+  if (!tableSort.key) return JUGADORES;              // por defecto: ELO descendente (orden original)
+  const val = SORT_COLS[tableSort.key].val;
+  const arr = [...JUGADORES].sort((a, b) => val(b) - val(a));
+  if (tableSort.dir === "asc") arr.reverse();
+  return arr;
+}
+
+function onSortClick(key){
+  if (tableSort.key !== key)            tableSort = { key, dir: "desc" };
+  else if (tableSort.dir === "desc")    tableSort.dir = "asc";
+  else                                  tableSort = { key: null, dir: null };
+  drawTable();
+}
+
 function drawTable(){
   const max = Math.max(...JUGADORES.map(p => elo[p]));
   const min = Math.min(...JUGADORES.map(p => elo[p]));
+  const lider = JUGADORES[0];
+
+  const th = key => {
+    const { label, cls } = SORT_COLS[key];
+    const active = tableSort.key === key;
+    const arrow  = active ? (tableSort.dir === "desc" ? "▼" : "▲") : "⇅";
+    return `<th class="sortable${cls?" "+cls:""}${active?" active":""}" data-key="${key}">
+              ${label}<span class="sort-ic">${arrow}</span>
+            </th>`;
+  };
+
   let s = `<thead><tr>
-      <th></th><th>Jugador</th><th>ELO</th><th class="hide-s">Pico</th>
-      <th>PJ</th><th>PG</th><th>%</th><th class="hide-s">Racha</th>
+      <th></th><th>Jugador</th>${th("elo")}${th("pico")}${th("pj")}${th("pg")}${th("pct")}${th("racha")}
     </tr></thead><tbody>`;
-  JUGADORES.forEach((p, i) => {
+  sortedJugadores().forEach((p, i) => {
     const st = stats[p], prov = st.pj < CONFIG.minPartidos;
     const w  = 6 + (elo[p] - min) / (max - min || 1) * 94;
     const r  = st.racha;
     const rc = r.gano ? "up" : "down";
-    s += `<tr class="row${i===0?" p1":""}" data-p="${p}">
-      <td class="pos${i===0?" p1":""}">${i+1}</td>
+    s += `<tr class="row${p===lider?" p1":""}" data-p="${p}">
+      <td class="pos${p===lider?" p1":""}">${i+1}</td>
       <td>
         <div class="pname">${p}${prov?'<span class="prov">provisorio</span>':""}</div>
         <div class="pbar"><i style="width:${w}%"></i></div>
@@ -824,6 +867,8 @@ function drawTable(){
   document.getElementById("rank-tbl").innerHTML = s + "</tbody>";
   document.querySelectorAll("#rank-tbl tr.row").forEach(tr =>
     tr.onclick = () => showPlayer(tr.dataset.p));
+  document.querySelectorAll("#rank-tbl th.sortable").forEach(th =>
+    th.onclick = () => onSortClick(th.dataset.key));
 }
 
 /* ==============================================================
